@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Book Store - متجر الكتب
 
-## Getting Started
+موقع إلكتروني لبيع الكتب مبني بـ Next.js و TypeScript و Tailwind CSS.
 
-First, run the development server:
+## المميزات
 
+- 🏠 **الصفحة الرئيسية**: عرض الكتب مع إمكانية البحث والتصفية
+- 📖 **صفحة تفاصيل الكتاب**: عرض معلومات مفصلة عن كل كتاب
+- 🛒 **صفحة السلة**: إدارة مشتريات المستخدم
+- ℹ️ **صفحة من نحن**: معلومات عن المتجر والمطور
+- 📞 **صفحة التواصل**: نموذج التواصل والأسئلة الشائعة
+- 📱 **تصميم متجاوب**: يعمل على جميع الأجهزة
+- 🖼️ **صور عالية الجودة**: من Unsplash مع تحسين الأداء
+
+## التقنيات المستخدمة
+
+- **Next.js 15** - إطار العمل الرئيسي
+- **TypeScript** - للكتابة الآمنة
+- **Tailwind CSS** - للتصميم
+- **Next.js Image** - لتحسين الصور
+- **React Hooks** - لإدارة الحالة
+
+## التثبيت والتشغيل
+
+### المتطلبات
+- Node.js 18 أو أحدث
+- npm أو yarn
+
+### خطوات التثبيت
+
+1. استنساخ المشروع:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd book-store
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. تثبيت التبعيات:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. تشغيل خادم التطوير:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. فتح المتصفح على:
+```
+http://localhost:3000
+```
 
-## Learn More
+## هيكل المشروع
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                    # صفحات التطبيق (App Router)
+│   ├── page.tsx           # الصفحة الرئيسية
+│   ├── book/[id]/         # صفحة تفاصيل الكتاب
+│   ├── cart/              # صفحة السلة
+│   ├── about/             # صفحة من نحن
+│   └── contact/           # صفحة التواصل
+├── components/            # المكونات القابلة لإعادة الاستخدام
+│   ├── BookImage.tsx      # مكون عرض صور الكتب
+│   ├── SimpleBookImage.tsx # مكون بسيط للصور
+│   └── ImageGallery.tsx   # معرض الصور
+└── data/                  # البيانات الوهمية
+    └── books.ts           # بيانات الكتب
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## المطور
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**gamal hal** - مطور الويب
 
-## Deploy on Vercel
+## الترخيص
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+هذا المشروع مفتوح المصدر ومتاح للاستخدام الشخصي والتعليمي.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## المساهمة
+
+نرحب بالمساهمات! يرجى إنشاء issue أو pull request.
+
+## الدعم
+
+للدعم الفني أو الاستفسارات، يرجى التواصل عبر صفحة التواصل في الموقع.
