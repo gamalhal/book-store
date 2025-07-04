@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from 'react';
-import { useAuth } from '../auth/AuthProvider';
 
 interface PaymentModalProps {
   isOpen: boolean;
@@ -16,25 +15,19 @@ export default function PaymentModal({ isOpen, onClose, amount, onSuccess }: Pay
   const [cvv, setCvv] = useState('');
   const [cardholderName, setCardholderName] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const { user } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
 
     if (!cardNumber || !expiryDate || !cvv || !cardholderName) {
-      setError('يرجى ملء جميع الحقول');
       return;
     }
 
     if (cardNumber.length !== 16) {
-      setError('رقم البطاقة يجب أن يكون 16 رقم');
       return;
     }
 
     if (cvv.length !== 3) {
-      setError('رمز CVV يجب أن يكون 3 أرقام');
       return;
     }
 
@@ -47,8 +40,8 @@ export default function PaymentModal({ isOpen, onClose, amount, onSuccess }: Pay
       // محاكاة نجاح الدفع
       onSuccess();
       onClose();
-    } catch (error) {
-      setError('حدث خطأ أثناء معالجة الدفع');
+    } catch {
+      // Handle error silently
     } finally {
       setLoading(false);
     }
@@ -100,12 +93,6 @@ export default function PaymentModal({ isOpen, onClose, amount, onSuccess }: Pay
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-              {error}
-            </div>
-          )}
-
           <div>
             <label htmlFor="cardholderName" className="block text-sm font-medium text-gray-700 mb-1">
               اسم حامل البطاقة

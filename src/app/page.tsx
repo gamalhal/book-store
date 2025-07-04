@@ -4,16 +4,18 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import SimpleBookImage from "@/components/SimpleBookImage";
-import { booksData, categories, filterBooksByCategory, searchBooks } from "@/data/books";
+import { booksData } from "@/data/books";
+
+// تعريف نوع الكتاب
+import type { Book } from "@/data/books";
 
 // عرض أول 6 كتب ككتب مميزة
 const featuredBooks = booksData.slice(0, 6);
 
 // مكون عرض كتاب واحد
-const BookCard = ({ book }: { book: any }) => {
+const BookCard = ({ book }: { book: Book }) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
       {/* صورة الكتاب */}

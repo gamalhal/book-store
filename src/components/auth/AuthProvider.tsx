@@ -11,8 +11,8 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => Promise<boolean>;
-  register: (name: string, email: string, password: string) => Promise<boolean>;
+  login: (email: string) => Promise<boolean>;
+  register: (name: string, email: string) => Promise<boolean>;
   logout: () => void;
   loading: boolean;
 }
@@ -32,7 +32,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(false);
   }, []);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (email: string): Promise<boolean> => {
     try {
       setLoading(true);
       // محاكاة تسجيل الدخول - يمكن استبدالها بـ API حقيقي
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const register = async (name: string, email: string, password: string): Promise<boolean> => {
+  const register = async (name: string, email: string): Promise<boolean> => {
     try {
       setLoading(true);
       // محاكاة التسجيل - يمكن استبدالها بـ API حقيقي

@@ -2,9 +2,8 @@
 // تعرض معلومات شاملة عن الكتاب: الصورة، العنوان، المؤلف، السعر، الوصف، التقييمات
 
 import Link from "next/link";
-import Image from "next/image";
 import SimpleBookImage, { SimpleBookImageThumbnail } from "@/components/SimpleBookImage";
-import { getBookById } from "@/data/books";
+import { getBookById, Book } from "@/data/books";
 
 // الحصول على بيانات الكتاب
 const getBookData = (id: string) => {
@@ -56,7 +55,7 @@ const ReviewsSection = ({ rating, reviewsCount }: { rating: number; reviewsCount
 };
 
 // مكون معلومات الكتاب التفصيلية
-const BookDetails = ({ book }: { book: any }) => {
+const BookDetails = ({ book }: { book: Book }) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
       <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">معلومات الكتاب</h3>
@@ -92,7 +91,7 @@ const BookDetails = ({ book }: { book: any }) => {
       <div className="mt-4">
         <h4 className="font-medium mb-2 text-gray-800 dark:text-gray-200">الكلمات المفتاحية:</h4>
         <div className="flex flex-wrap gap-2">
-          {book.tags.map((tag: string) => (
+          {Array.isArray(book.tags) && book.tags.map((tag: string) => (
             <span key={tag} className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs">
               {tag}
             </span>
@@ -104,7 +103,7 @@ const BookDetails = ({ book }: { book: any }) => {
 };
 
 // مكون عرض الكتب ذات الصلة
-const RelatedBooks = ({ relatedBookIds }: { relatedBookIds: number[] }) => {
+const RelatedBooks = () => {
   const relatedBooks = [
     {
       id: 2,
@@ -163,8 +162,9 @@ const RelatedBooks = ({ relatedBookIds }: { relatedBookIds: number[] }) => {
 };
 
 // المكون الرئيسي للصفحة
-export default function BookPage({ params }: { params: { id: string } }) {
-  const book = getBookData(params.id);
+export default async function BookPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const book = getBookData(id) as Book;
   
   if (!book) {
     return (
@@ -280,7 +280,7 @@ export default function BookPage({ params }: { params: { id: string } }) {
           <div className="space-y-6">
             <ReviewsSection rating={book.rating} reviewsCount={book.reviewsCount} />
             <BookDetails book={book} />
-            <RelatedBooks relatedBookIds={book.relatedBooks} />
+            <RelatedBooks />
           </div>
         </div>
       </div>

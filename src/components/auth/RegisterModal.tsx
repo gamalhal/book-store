@@ -36,7 +36,7 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }: Regi
       return;
     }
 
-    const success = await register(name, email, password);
+    const success = await register(name, email);
     if (success) {
       onClose();
     } else {

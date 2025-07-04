@@ -24,7 +24,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }: Logi
       return;
     }
 
-    const success = await login(email, password);
+    const success = await login(email);
     if (success) {
       onClose();
     } else {

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useAuth } from "@/components/auth/AuthProvider";
 import PaymentModal from "@/components/payment/PaymentModal";
 import { BookImageThumbnail } from "@/components/BookImage";
@@ -107,6 +106,14 @@ const CartItem = ({
 };
 
 // مكون ملخص الطلب
+interface OrderSummaryProps {
+  subtotal: number;
+  shipping: number;
+  tax: number;
+  total: number;
+  onCheckout: () => void;
+  user: { name: string; email: string } | null;
+}
 const OrderSummary = ({ 
   subtotal, 
   shipping, 
@@ -114,14 +121,7 @@ const OrderSummary = ({
   total,
   onCheckout,
   user
-}: { 
-  subtotal: number;
-  shipping: number;
-  tax: number;
-  total: number;
-  onCheckout: () => void;
-  user: any;
-}) => {
+}: OrderSummaryProps) => {
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
       <h3 className="text-lg font-semibold mb-4">ملخص الطلب</h3>

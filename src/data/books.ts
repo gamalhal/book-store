@@ -367,9 +367,7 @@ export const booksData: Book[] = [
 
 // حساب عدد الكتب في كل تصنيف
 export const getCategoryCounts = () => {
-  const counts = {
-    ...categories.reduce((acc, cat) => ({ ...acc, [cat.id]: 0 }), {}),
-  };
+  const counts: { [key: string]: number } = {};
   booksData.forEach((book) => {
     counts[book.category] = (counts[book.category] || 0) + 1;
   });
